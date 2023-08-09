@@ -1,5 +1,5 @@
-const backendUrl = "http://localhost:8080";
-// const backendUrl = "https://web-socket-chat-application.onrender.com";
+// const backendUrl = "http://localhost:8080";
+const backendUrl = "https://web-socket-chat-application.onrender.com";
 var stompClient = null;
 const loginTime = Date.now();
 
