@@ -1,0 +1,96 @@
+.login-form {
+    position: absolute;
+    height: 70vh;
+    width: 50vw;
+    background-color: rgb(164, 198, 228);
+    margin-top: 18vh;
+    margin-left: 18vw;
+    border-radius: 10%;
+}
+
+.login-input {
+    margin-top: 28vh;
+    margin-left: 13vw;
+}
+
+.login-button {
+    margin-top: 9vh;
+}
+
+.main-div {
+    text-align: center;
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+.display-message, h1 {
+    background-color: #303d29;
+    padding-bottom: 15px;
+    color: aliceblue;
+}
+
+.display-message {
+    display: block;
+    background-color: #d8e9d0ad;
+    height: 91vh;
+}
+
+.message-content {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 75vh;
+    padding-bottom: 20px;
+}
+
+.send-div {
+    display: flex;
+    background-color: beige;
+    height: 6vh;
+}
+
+#message-container {
+    display: none;
+}
+
+.chat-div {
+    height: 15vh;
+    width: 20vw;
+    margin-top: 10px;
+}
+
+.chat-div-right {
+    margin-left: 75%;
+    background-color: #6c9855;
+    display: block;
+    margin-right: 30px;
+}
+
+@media(max-width:2000px) {
+    .chat-div-right{
+        margin-left: 62%;
+    }
+}
+
+@media(max-width:1500px) {
+    .chat-div-right{
+        margin-left: 75%;
+    }
+}
+
+.chat-div-left {
+    margin-left: 30px;
+    background-color: #4c4b4b;
+}
+
+.sender-name {
+    height: 5vh;
+    width: 20vw;
+    background-color: #303d29;
+    padding-top: 5px;
+}
+
+.message-class {
+    padding-top: 10px;
+    text-align: left;
+    margin-left: 10px;
+}
