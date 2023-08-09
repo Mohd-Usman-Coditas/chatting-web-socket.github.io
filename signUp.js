@@ -9,7 +9,7 @@ document.getElementById("login-button-id").addEventListener("click", (e) => {
 document.getElementById("sign-up-id").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("loader").style.display = "inline-block";
-    fetch(link + "/user/signUp", {
+    fetch(backendUrl + "/user/signUp", {
         method: 'POST',
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
