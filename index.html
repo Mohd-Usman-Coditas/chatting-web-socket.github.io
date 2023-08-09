@@ -19,14 +19,15 @@
                 style="font-size: 33px; background-color: rgb(214, 76, 76); border-radius: 5%; color: aliceblue; display: none;">
                 Invalid Credential</h1>
             <input class="form-control col-md-8" type="text" required id="login-user-name"
-                placeholder="Enter your name">
+                placeholder="Enter your username">
         </div>
         <div class="login-input-1">
-            <input class="form-control col-md-8" type="text" required id="login-user-password"
+            <input class="form-control col-md-8" type="password" required id="login-user-password"
                 placeholder="Enter your password">
         </div>
         <div class="login-button">
-            <button id="login-form-id" class="form-control col-md-3 btn btn-primary">Join</button>
+            <span id="loader" class="loader"></span><button id="login-form-id" class="form-control col-md-3 btn btn-primary">Join</button>
+            <button id="SignUp-button-id" class="form-control col-md-3 btn btn-light">SignUp</button>
         </div>
     </div>
     <div class="main-container" id="main-container-id">
@@ -50,7 +51,10 @@
                 </div>
             </div>
             <div class="chatting-body-parent">
-                <div class="chatting-body">
+                <div class="chat-image-div" id="chat-image-id">
+                    <img class="chat-image" src="https://cdn-icons-png.flaticon.com/512/2312/2312512.png" alt="chat-image">
+                </div>
+                <div class="chatting-body" id="message-whole-body-id" style="display: none;">
                     <div class="user-header-class" id="header-id">
                         <div class="user-header-class-h1">
                             <h1 class="display-4" style="font-size: 30px; color: white;">User Name</h1>

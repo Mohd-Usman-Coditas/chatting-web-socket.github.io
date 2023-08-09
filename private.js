@@ -1,11 +1,16 @@
-// const backendUrl = "http://localhost:8081";
-const backendUrl = "https://web-socket-chat-application.onrender.com";
+const backendUrl = "http://localhost:8080";
+// const backendUrl = "https://web-socket-chat-application.onrender.com";
 var stompClient = null;
 const loginTime = Date.now();
 
 document.getElementById("logout-button").addEventListener("click", (e) => {
     stompClient.disconnect();
     location.reload();
+})
+
+document.getElementById("SignUp-button-id").addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "signUpForm.html";
 })
 
 function connect() {
@@ -134,6 +139,8 @@ function fetchUsersList() {
 }
 
 function selectCurrentUser(id, accountName, imageUrl) {
+    document.getElementById("chat-image-id").style.display = 'none';
+    document.getElementById("message-whole-body-id").style.display = 'block';
     var lastChatUser = localStorage.getItem("lastChatUser");
     if (lastChatUser != null) {
         document.getElementById(lastChatUser + "body").style.display = 'none';
@@ -148,6 +155,7 @@ function selectCurrentUser(id, accountName, imageUrl) {
 
 document.getElementById("login-form-id").addEventListener("click", (e) => {
     e.preventDefault();
+    document.getElementById("loader").style.display = "inline-block";
     let username = document.getElementById("login-user-name").value;
     let password = document.getElementById("login-user-password").value;
     fetch(backendUrl + `/auth/login`, {
@@ -160,6 +168,7 @@ document.getElementById("login-form-id").addEventListener("click", (e) => {
             'Content-type': 'application/json; charset=UTF-8',
         }
     }).then(response => {
+        document.getElementById("loader").style.display = "none";
         if (response.status == 200) {
             body = response.json();
             body.then(data => {
@@ -193,22 +202,24 @@ const onMessageReceivedData = (payload) => {
 document.getElementById("send-message-button-id").addEventListener("click", (e) => {
     e.preventDefault();
     const messageContent = document.getElementById("message-input-id").value;
-    const dateAndTime = Date.now();
-    stompClient.send("/app/private-message", {}, JSON.stringify({
-        "senderId": localStorage.getItem("wuId"),
-        "receiverId": localStorage.getItem("currentChatUser"),
-        "message": messageContent,
-        "date": dateAndTime
-    }))
-    var messageBodyDiv = document.createElement('div');
+    if (messageContent != "") {
+        const dateAndTime = Date.now();
+        stompClient.send("/app/private-message", {}, JSON.stringify({
+            "senderId": localStorage.getItem("wuId"),
+            "receiverId": localStorage.getItem("currentChatUser"),
+            "message": messageContent,
+            "date": dateAndTime
+        }))
+        var messageBodyDiv = document.createElement('div');
 
-    messageBodyDiv.classList.add('message-sender');
-    messageBodyDiv.innerHTML = `<p class="messageContent">${messageContent}</p>
+        messageBodyDiv.classList.add('message-sender');
+        messageBodyDiv.innerHTML = `<p class="messageContent">${messageContent}</p>
                                         <span class="timestamp">${extractDateAndTime(parseInt(dateAndTime))}</span>`;
-    var currentChatScreen = document.getElementById(localStorage.getItem("currentChatUser") + "body");
-    currentChatScreen.appendChild(messageBodyDiv);
-    document.getElementById("message-input-id").value = "";
-    currentChatScreen.scrollTop = currentChatScreen.scrollHeight;
+        var currentChatScreen = document.getElementById(localStorage.getItem("currentChatUser") + "body");
+        currentChatScreen.appendChild(messageBodyDiv);
+        document.getElementById("message-input-id").value = "";
+        currentChatScreen.scrollTop = currentChatScreen.scrollHeight;
+    }
 })
 
 function extractDateAndTime(timestamp) {
